@@ -1,1 +1,11 @@
+################################################################################
+#
+# @file      .gitattributes
+# @brief     Contains the attributes of the git repo
+# @author    Max Hager
+# @date      17.03.2024
+# @copyright © Max Hager, 2024. All right reserved.
+#
+################################################################################
+
 text eol=lf
