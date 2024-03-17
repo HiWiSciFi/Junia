@@ -1,0 +1,13 @@
+################################################################################
+#
+# @file      .gitignore
+# @brief     Contains the files and directories to ignore in source control
+# @author    Max Hager
+# @date      17.03.2024
+# @copyright © Max Hager, 2024. All right reserved.
+#
+################################################################################
+
+.vs/
+dev/
+lib/
