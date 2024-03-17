@@ -1,0 +1,22 @@
+# Format Style Options - Created with Clang Power Tools
+---
+AccessModifierOffset: -4
+AlignConsecutiveAssignments: Consecutive
+AlignConsecutiveDeclarations: Consecutive
+AllowShortBlocksOnASingleLine: Empty
+BasedOnStyle: Google
+BreakBeforeBraces: Attach
+ColumnLimit: 0
+Cpp11BracedListStyle: false
+EmptyLineBeforeAccessModifier: Always
+IncludeBlocks: Preserve
+IndentWidth: 4
+LineEnding: LF
+NamespaceIndentation: None
+SortIncludes: true
+SpaceBeforeCpp11BracedList: true
+SpaceInEmptyBlock: true
+SpacesBeforeTrailingComments: 1
+TabWidth: 4
+UseTab: ForContinuationAndIndentation
+...
