@@ -58,6 +58,10 @@ target_include_directories(Junia PUBLIC
 	"${Vulkan_INCLUDE_DIR}"
 )
 
+target_link_libraries(Junia PRIVATE
+	"${Vulkan_LIBRARY}"
+)
+
 set(SRC_JUNIA
 	"${JUNIA_SOURCE_DIR}/Junia/Junia.cpp"
 )
@@ -79,10 +83,6 @@ target_sources(Junia PRIVATE
 	${SRC_JUNIA_CORE}
 	${INCLUDE_JUNIA}
 	${INCLUDE_JUNIA_CORE}
-)
-
-target_link_libraries(Junia PRIVATE
-	"${Vulkan_LIBRARY}"
 )
 
 source_group( "src"          FILES ${SRC_JUNIA}          )
