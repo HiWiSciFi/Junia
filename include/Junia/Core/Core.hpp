@@ -14,7 +14,7 @@
 
 namespace Junia {
 
-#ifndef BUILD_JUNIA
+#ifdef BUILD_JUNIA
 
 /**
  * @def   JUNIA_SYMBOL
