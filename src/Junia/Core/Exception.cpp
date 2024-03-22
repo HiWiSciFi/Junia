@@ -20,6 +20,22 @@ bool CodePos::IsProvided() const { return line >= 0; }
 
 CodePos CodePos::NotProvided() { return CodePos(); }
 
-Exception::Exception(const char* msg, CodePos location) : location(location), std::runtime_error(msg) { }
+Exception::Exception(const char* msg, CodePos location) noexcept
+	: location(location), std::runtime_error(msg) { }
+
+const char* Exception::what() const {
+	return What();
+}
+
+bool Exception::CodePosProvided() const noexcept {
+	return this->location.IsProvided();
+}
+
+const char* Exception::What() const noexcept {
+	return std::exception::what();
+}
+
+const char* Exception::Where() const noexcept {
+}
 
 } // namespace Junia

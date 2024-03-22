@@ -18,14 +18,14 @@
 
 namespace Junia {
 
-struct CodePos {
+struct JUNIA_SYMBOL CodePos {
 	const char* file;
 	int         line;
 
 	CodePos();
 	CodePos(const char* file, int line);
 
-	[[nodiscard]] bool IsProvided() const;
+	[[nodiscard]] bool IsProvided() const noexcept;
 
 	[[nodiscard]] static CodePos NotProvided();
 };
@@ -34,7 +34,13 @@ struct CodePos {
 
 class JUNIA_SYMBOL Exception : public std::runtime_error {
 public:
-	Exception(const char* msg, CodePos location);
+	explicit Exception(const char* msg, CodePos location) noexcept;
+
+	[[nodiscard]] virtual const char* what() const final override;
+
+	[[nodiscard]] bool        CodePosProvided() const noexcept;
+	[[nodiscard]] const char* What() const noexcept;
+	[[nodiscard]] const char* Where() const noexcept;
 
 private:
 	CodePos location;
