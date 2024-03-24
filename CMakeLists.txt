@@ -4,7 +4,7 @@
 # @brief     Contains the build instructions for project files for Junia
 # @author    Max Hager
 # @date      17.03.2024
-# @copyright © Max Hager, 2024. All right reserved.
+# @copyright � Max Hager, 2024. All right reserved.
 #
 ################################################################################
 
@@ -58,12 +58,17 @@ target_include_directories(Junia PUBLIC
 	"${Vulkan_INCLUDE_DIR}"
 )
 
+target_link_libraries(Junia PRIVATE
+	"${Vulkan_LIBRARY}"
+)
+
 set(SRC_JUNIA
 	"${JUNIA_SOURCE_DIR}/Junia/Junia.cpp"
 )
 
 set(SRC_JUNIA_CORE
 	"${JUNIA_SOURCE_DIR}/Junia/Core/Exception.cpp"
+	"${JUNIA_SOURCE_DIR}/Junia/Core/StringConvert.cpp"
 )
 
 set(INCLUDE_JUNIA
@@ -73,6 +78,8 @@ set(INCLUDE_JUNIA
 set(INCLUDE_JUNIA_CORE
 	"${JUNIA_INCLUDE_DIR}/Junia/Core/Core.hpp"
 	"${JUNIA_INCLUDE_DIR}/Junia/Core/Exception.hpp"
+	"${JUNIA_INCLUDE_DIR}/Junia/Core/StringConvert.hpp"
+	"${JUNIA_INCLUDE_DIR}/Junia/Core/Strings.hpp"
 )
 
 target_sources(Junia PRIVATE
@@ -80,10 +87,6 @@ target_sources(Junia PRIVATE
 	${SRC_JUNIA_CORE}
 	${INCLUDE_JUNIA}
 	${INCLUDE_JUNIA_CORE}
-)
-
-target_link_libraries(Junia PRIVATE
-	"${Vulkan_LIBRARY}"
 )
 
 source_group( "src"          FILES ${SRC_JUNIA}          )
