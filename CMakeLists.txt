@@ -67,7 +67,7 @@ set(SRC_JUNIA
 )
 
 set(SRC_JUNIA_CORE
-	""
+	"${JUNIA_SOURCE_DIR}/Junia/Core/StringConvert.cpp"
 )
 
 set(INCLUDE_JUNIA
@@ -76,6 +76,8 @@ set(INCLUDE_JUNIA
 
 set(INCLUDE_JUNIA_CORE
 	"${JUNIA_INCLUDE_DIR}/Junia/Core/Core.hpp"
+	"${JUNIA_INCLUDE_DIR}/Junia/Core/StringConvert.hpp"
+	"${JUNIA_INCLUDE_DIR}/Junia/Core/Strings.hpp"
 )
 
 target_sources(Junia PRIVATE
