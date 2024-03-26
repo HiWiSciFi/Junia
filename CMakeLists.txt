@@ -1,10 +1,12 @@
+
+
 ################################################################################
 #
 # @file      CMakeLists.txt
 # @brief     Contains the build instructions for project files for Junia
 # @author    Max Hager
 # @date      17.03.2024
-# @copyright � Max Hager, 2024. All right reserved.
+# @copyright © Max Hager, 2024. All right reserved.
 #
 ################################################################################
 
