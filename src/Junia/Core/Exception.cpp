@@ -12,30 +12,53 @@
 
 namespace Junia {
 
-CodePos::CodePos() : file(""), line(-1) { }
+CodePos::CodePos() noexcept : file(""), function(""), line(-1) { }
 
-CodePos::CodePos(const char* file, int line) : file(file), line(line) { }
+CodePos::CodePos(const char* file, const char* function, int line) noexcept
+	: file(file), function(function), line(line) { }
 
-bool CodePos::IsProvided() const { return line >= 0; }
+bool CodePos::IsProvided() const noexcept { return line >= 0; }
 
-CodePos CodePos::NotProvided() { return CodePos(); }
+CodePos CodePos::NotProvided() noexcept { return CodePos(); }
 
-Exception::Exception(const char* msg, CodePos location) noexcept
-	: location(location), std::runtime_error(msg) { }
+Exception::Exception(const utf8_string& msg, std::exception_ptr previous, CodePos location) noexcept
+	: message(msg), previous(previous), location(location), std::runtime_error(nullptr) { }
 
 const char* Exception::what() const {
-	return What();
+	return this->GetMessage().c_str();
 }
 
 bool Exception::CodePosProvided() const noexcept {
 	return this->location.IsProvided();
 }
 
-const char* Exception::What() const noexcept {
-	return std::exception::what();
+const utf8_string& Exception::GetMessage() const noexcept {
+	return this->message;
 }
 
-const char* Exception::Where() const noexcept {
+const CodePos& Exception::Where() const noexcept {
+	return this->location;
+}
+
+std::exception_ptr Exception::GetPrevious() const noexcept {
+	return this->previous;
+}
+
+utf8_string Exception::GetText(bool recursive) const {
+	if (!recursive || this->previous == nullptr) return this->GetMessage();
+
+	utf8_string message;
+	try {
+		std::rethrow_exception(this->previous);
+	} catch (const Exception& ex) {
+		message += ex.GetText(true);
+	} catch (const std::exception& ex) {
+		message += ex.what();
+	}
+	message += '\n';
+	message += this->GetMessage();
+
+	return message;
 }
 
 } // namespace Junia
