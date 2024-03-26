@@ -18,7 +18,7 @@ namespace Junia {
 
 /**
  * @def   JUNIA_SYMBOL
- * @brief Declare a symbol to be exported from the dll
+ * @brief declare a symbol to be exported from the dll
  */
 #define JUNIA_SYMBOL __declspec(dllexport)
 
@@ -26,7 +26,7 @@ namespace Junia {
 
 /**
  * @def   JUNIA_SYMBOL
- * @brief Declare a symbol to be imported from the dll
+ * @brief declare a symbol to be imported from the dll
  */
 #define JUNIA_SYMBOL __declspec(dllimport)
 
