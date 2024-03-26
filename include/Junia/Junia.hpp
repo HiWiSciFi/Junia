@@ -17,12 +17,12 @@
 namespace Junia {
 
 /**
- * @brief Initialize the Junia Engine
+ * @brief initialize the Junia Engine
  */
 void JUNIA_SYMBOL Init();
 
 /**
- * @brief Terminate the Junia Enine
+ * @brief terminate the Junia Enine
  */
 void JUNIA_SYMBOL Terminate();
 

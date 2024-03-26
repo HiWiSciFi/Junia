@@ -15,14 +15,13 @@
 
 namespace Junia {
 
-using ucodepoint_t = char32_t;
-
-using utf8_string        = std::string;
-using utf8_stringstream  = std::stringstream;
-using u_string           = std::basic_string<ucodepoint_t, std::char_traits<ucodepoint_t>, std::allocator<ucodepoint_t>>;
-using u_stringstream     = std::basic_stringstream<ucodepoint_t, std::char_traits<ucodepoint_t>, std::allocator<ucodepoint_t>>;
-using utf16_string       = std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t>>;
-using utf16_stringstream = std::basic_stringstream<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t>>;
+using ucodepoint_t       = char32_t;                                                                                            // a unicode codepoint
+using utf8_string        = std::string;                                                                                         // a string of UTF-8 encoded characters
+using utf8_stringstream  = std::stringstream;                                                                                   // a string stream for UTF-8 encoded strings
+using u_string           = std::basic_string<ucodepoint_t, std::char_traits<ucodepoint_t>, std::allocator<ucodepoint_t>>;       // a string of unicode codepoints
+using u_stringstream     = std::basic_stringstream<ucodepoint_t, std::char_traits<ucodepoint_t>, std::allocator<ucodepoint_t>>; // a string stream of unicode codepoints
+using utf16_string       = std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t>>;                      // a string of UTF-16 encoded characters
+using utf16_stringstream = std::basic_stringstream<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t>>;                // a string stream for UTF-16 encoded strings
 
 } // namespace Junia
 
