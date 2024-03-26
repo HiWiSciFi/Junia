@@ -4,7 +4,7 @@
 # @brief     Contains the build instructions for project files for Junia
 # @author    Max Hager
 # @date      17.03.2024
-# @copyright © Max Hager, 2024. All right reserved.
+# @copyright Â© Max Hager, 2024. All right reserved.
 #
 ################################################################################
 
@@ -67,6 +67,7 @@ set(SRC_JUNIA
 )
 
 set(SRC_JUNIA_CORE
+	"${JUNIA_SOURCE_DIR}/Junia/Core/Exception.cpp"
 	"${JUNIA_SOURCE_DIR}/Junia/Core/StringConvert.cpp"
 )
 
@@ -76,6 +77,7 @@ set(INCLUDE_JUNIA
 
 set(INCLUDE_JUNIA_CORE
 	"${JUNIA_INCLUDE_DIR}/Junia/Core/Core.hpp"
+	"${JUNIA_INCLUDE_DIR}/Junia/Core/Exception.hpp"
 	"${JUNIA_INCLUDE_DIR}/Junia/Core/StringConvert.hpp"
 	"${JUNIA_INCLUDE_DIR}/Junia/Core/Strings.hpp"
 )
