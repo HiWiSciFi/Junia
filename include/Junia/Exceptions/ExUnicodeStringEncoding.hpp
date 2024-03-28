@@ -30,8 +30,7 @@ public:
 	ExUnicodeStringEncoding(const utf8_string& msg, std::exception_ptr previous, CodePos location, const u_string& str, std::size_t index) noexcept;
 
 protected:
-	u_string    str;
-	std::size_t index;
+	u_string str;
 };
 
 } // namespace Junia

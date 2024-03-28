@@ -23,8 +23,12 @@ public:
 	 * @param previous an exception that led to this exception or a nullptr
 	 * @param location the code position this exception was thrown in (see
 	 *                 JUNIA_CODEPOS)
+	 * @param index    the index of the character that caused the exception
 	 */
-	ExStringEncoding(const utf8_string& msg, std::exception_ptr previous = nullptr, CodePos location = CodePos::NotProvided()) noexcept;
+	ExStringEncoding(const utf8_string& msg, std::exception_ptr previous = nullptr, CodePos location = CodePos::NotProvided(), std::size_t index = 0) noexcept;
+
+protected:
+	std::size_t index;
 };
 
 } // namespace Junia

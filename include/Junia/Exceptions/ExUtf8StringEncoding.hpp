@@ -30,7 +30,6 @@ public:
 
 protected:
 	utf8_string str;
-	std::size_t index;
 };
 
 } // namespace Junia
