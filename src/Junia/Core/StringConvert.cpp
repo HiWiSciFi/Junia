@@ -14,6 +14,8 @@
 #include <stdexcept>
 #include <vector>
 
+static constexpr const char* CURRENT_FILE_NAME = "Junia/src/Junia/Core/StringConvert.cpp";
+
 namespace Junia {
 
 u_string StringConvert::UTF8ToUnicode(const utf8_string& utf8) {
@@ -25,37 +27,37 @@ u_string StringConvert::UTF8ToUnicode(const utf8_string& utf8) {
 		if (c >= 0x00 && c <= 0x7F) {
 			unicode += c & 0x7F;
 		} else if (c >= 0xC0 && c <= 0xDF) {
-			if (i + 1 >= utf8.size()) throw std::logic_error("Invalid UTF-8 string!");
+			if (i + 1 >= utf8.size()) throw ExUtf8StringEncoding("Invalid UTF-8 string. Not enough characters.", nullptr, CodePos(CURRENT_FILE_NAME, __FUNCTION__, __LINE__), utf8, i);
 			u_string::value_type point = c & 0x1F;
 			c                          = utf8[++i];
-			if (c < 0x80 || c > 0xBF) throw std::logic_error("Invalid UTF-8 string!");
+			if (c < 0x80 || c > 0xBF) throw ExUtf8StringEncoding("Invalid UTF-8 string. Unexpected character encountered.", nullptr, CodePos(CURRENT_FILE_NAME, __FUNCTION__, __LINE__), utf8, i - 1);
 			point = (point << 6) | (c & 0x3F);
 			unicode += point;
 		} else if (c >= 0xE0 && c <= 0xEF) {
-			if (i + 2 >= utf8.size()) throw std::logic_error("Invalid UTF-8 string!");
+			if (i + 2 >= utf8.size()) throw ExUtf8StringEncoding("Invalid UTF-8 string. Not enough characters.", nullptr, CodePos(CURRENT_FILE_NAME, __FUNCTION__, __LINE__), utf8, i);
 			u_string::value_type point = c & 0x0F;
 			c                          = utf8[++i];
-			if (c < 0x80 || c > 0xBF) throw std::logic_error("Invalid UTF-8 string!");
+			if (c < 0x80 || c > 0xBF) throw ExUtf8StringEncoding("Invalid UTF-8 string. Unexpected character encountered.", nullptr, CodePos(CURRENT_FILE_NAME, __FUNCTION__, __LINE__), utf8, i - 1);
 			point = (point << 6) | (c & 0x3F);
 			c     = utf8[++i];
-			if (c < 0x80 || c > 0xBF) throw std::logic_error("Invalid UTF-8 string!");
+			if (c < 0x80 || c > 0xBF) throw ExUtf8StringEncoding("Invalid UTF-8 string. Unexpected character encountered.", nullptr, CodePos(CURRENT_FILE_NAME, __FUNCTION__, __LINE__), utf8, i - 1);
 			point = (point << 6) | (c & 0x3F);
 			unicode += point;
 		} else if (c >= 0xF0 && c <= 0xF7) {
-			if (i + 3 >= utf8.size()) throw std::logic_error("Invalid UTF-8 string!");
+			if (i + 3 >= utf8.size()) throw ExUtf8StringEncoding("Invalid UTF-8 string. Not enough characters.", nullptr, CodePos(CURRENT_FILE_NAME, __FUNCTION__, __LINE__), utf8, i);
 			u_string::value_type point = c & 0x07;
 			c                          = utf8[++i];
-			if (c < 0x80 || c > 0xBF) throw std::logic_error("Invalid UTF-8 string!");
+			if (c < 0x80 || c > 0xBF) throw ExUtf8StringEncoding("Invalid UTF-8 string. Unexpected character encountered.", nullptr, CodePos(CURRENT_FILE_NAME, __FUNCTION__, __LINE__), utf8, i - 1);
 			point = (point << 6) | (c & 0x3F);
 			c     = utf8[++i];
-			if (c < 0x80 || c > 0xBF) throw std::logic_error("Invalid UTF-8 string!");
+			if (c < 0x80 || c > 0xBF) throw ExUtf8StringEncoding("Invalid UTF-8 string. Unexpected character encountered.", nullptr, CodePos(CURRENT_FILE_NAME, __FUNCTION__, __LINE__), utf8, i - 1);
 			point = (point << 6) | (c & 0x3F);
 			c     = utf8[++i];
-			if (c < 0x80 || c > 0xBF) throw std::logic_error("Invalid UTF-8 string!");
+			if (c < 0x80 || c > 0xBF) throw ExUtf8StringEncoding("Invalid UTF-8 string. Unexpected character encountered.", nullptr, CodePos(CURRENT_FILE_NAME, __FUNCTION__, __LINE__), utf8, i - 1);
 			point = (point << 6) | (c & 0x3F);
 			unicode += point;
 		} else {
-			throw std::logic_error("Invalid UTF-8 string!");
+			throw ExUtf8StringEncoding("Invalid UTF-8 string. Unexpected character encountered.", nullptr, CodePos(CURRENT_FILE_NAME, __FUNCTION__, __LINE__), utf8, i);
 		}
 	}
 
@@ -83,7 +85,7 @@ utf8_string StringConvert::UnicodeToUTF8(const u_string& unicode) {
 			utf8 += static_cast<utf8_string::value_type>(0x80 | ((point >> 6) & 0x3F));
 			utf8 += static_cast<utf8_string::value_type>(0x80 | (point & 0x3F));
 		} else
-			throw std::logic_error("Invalid unicode string!");
+			throw ExUnicodeStringEncoding("Invalid Unicode codepoint encountered", nullptr, CodePos(CURRENT_FILE_NAME, __FUNCTION__, __LINE__), unicode, i);
 	}
 
 	return utf8;
@@ -96,11 +98,11 @@ u_string StringConvert::UTF16ToUnicode(const utf16_string& utf16) {
 		utf16_string::value_type c = utf16[i];
 
 		if (c >= 0xD800 && c <= 0xDBFF) {
-			if (utf16.size() <= i + 1) throw std::logic_error("Invalid UTF-16 string!");
+			if (utf16.size() <= i + 1) throw ExUtf16StringEncoding("Invalid UTF-16 string. Not enough characters.", nullptr, CodePos(CURRENT_FILE_NAME, __FUNCTION__, __LINE__), utf16, i);
 			u_string::value_type point = (c - 0xD800) << 10;
 
 			c = utf16[++i];
-			if (c < 0xDC00 || c > 0xDFFF) throw std::logic_error("Invalid UTF-16 string!");
+			if (c < 0xDC00 || c > 0xDFFF) throw ExUtf16StringEncoding("Invalid UTF-16 string. Unexpected character encountered.", nullptr, CodePos(CURRENT_FILE_NAME, __FUNCTION__, __LINE__), utf16, i - 1);
 			point += c - 0xDC00;
 
 			point += 0x10000;
@@ -132,10 +134,12 @@ utf16_string StringConvert::UnicodeToUTF16(const u_string& unicode) {
 }
 
 utf16_string StringConvert::UTF8ToUTF16(const utf8_string& utf8) {
+	// may throw ExUtf8StringEncoding or ExUnicodeStringEncoding
 	return UnicodeToUTF16(UTF8ToUnicode(utf8));
 }
 
 utf8_string StringConvert::UTF16ToUTF8(const utf16_string& utf16) {
+	// may throw ExUtf16StringEncoding or ExUnicodeStringEncoding
 	return UnicodeToUTF8(UTF16ToUnicode(utf16));
 }
 
