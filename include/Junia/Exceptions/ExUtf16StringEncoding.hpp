@@ -26,7 +26,7 @@ public:
 	 * @param str      the string that caused the exception
 	 * @param index    the index of the character that caused the exception
 	 */
-	ExUtf16StringEncoding(const utf8_string& msg, std::exception_ptr previous, CodePos location, const utf16_string& str, std::size_t index);
+	ExUtf16StringEncoding(const utf8_string& msg, std::exception_ptr previous, CodePos location, const utf16_string& str, std::size_t index) noexcept;
 
 protected:
 	utf16_string str;

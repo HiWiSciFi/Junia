@@ -12,7 +12,7 @@
 
 namespace Junia {
 
-ExUnicodeStringEncoding::ExUnicodeStringEncoding(const utf8_string& msg, std::exception_ptr previous, CodePos location, const u_string& str, std::size_t index)
+ExUnicodeStringEncoding::ExUnicodeStringEncoding(const utf8_string& msg, std::exception_ptr previous, CodePos location, const u_string& str, std::size_t index) noexcept
 	: ExStringEncoding(msg, previous, location), str(str), index(index) { }
 
 } // namespace Junia

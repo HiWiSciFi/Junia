@@ -24,7 +24,7 @@ public:
 	 * @param location the code position this exception was thrown in (see
 	 *                 JUNIA_CODEPOS)
 	 */
-	ExStringEncoding(const utf8_string& msg, std::exception_ptr previous = nullptr, CodePos location = CodePos::NotProvided());
+	ExStringEncoding(const utf8_string& msg, std::exception_ptr previous = nullptr, CodePos location = CodePos::NotProvided()) noexcept;
 };
 
 } // namespace Junia
