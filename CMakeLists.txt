@@ -71,6 +71,13 @@ set(SRC_JUNIA_CORE
 	"${JUNIA_SOURCE_DIR}/Junia/Core/StringConvert.cpp"
 )
 
+set(SRC_JUNIA_EXCEPTIONS
+	"${JUNIA_SOURCE_DIR}/Junia/Exceptions/ExStringEncoding.cpp"
+	"${JUNIA_SOURCE_DIR}/Junia/Exceptions/ExUnicodeStringEncoding.cpp"
+	"${JUNIA_SOURCE_DIR}/Junia/Exceptions/ExUtf8StringEncoding.cpp"
+	"${JUNIA_SOURCE_DIR}/Junia/Exceptions/ExUtf16StringEncoding.cpp"
+)
+
 set(INCLUDE_JUNIA
 	"${JUNIA_INCLUDE_DIR}/Junia/Junia.hpp"
 )
@@ -82,15 +89,26 @@ set(INCLUDE_JUNIA_CORE
 	"${JUNIA_INCLUDE_DIR}/Junia/Core/Strings.hpp"
 )
 
+set(INCLUDE_JUNIA_EXCEPTIONS
+	"${JUNIA_INCLUDE_DIR}/Junia/Exceptions/ExStringEncoding.hpp"
+	"${JUNIA_INCLUDE_DIR}/Junia/Exceptions/ExUnicodeStringEncoding.hpp"
+	"${JUNIA_INCLUDE_DIR}/Junia/Exceptions/ExUtf16StringEncoding.hpp"
+	"${JUNIA_INCLUDE_DIR}/Junia/Exceptions/ExUtf8StringEncoding.hpp"
+)
+
 target_sources(Junia PRIVATE
 	${SRC_JUNIA}
 	${SRC_JUNIA_CORE}
+	${SRC_JUNIA_EXCEPTIONS}
 	${INCLUDE_JUNIA}
 	${INCLUDE_JUNIA_CORE}
+	${INCLUDE_JUNIA_EXCEPTIONS}
 )
 
-source_group( "src"          FILES ${SRC_JUNIA}          )
-source_group( "src/Core"     FILES ${SRC_JUNIA_CORE}     )
+source_group( "src"            FILES ${SRC_JUNIA}            )
+source_group( "src/Core"       FILES ${SRC_JUNIA_CORE}       )
+source_group( "src/Exceptions" FILES ${SRC_JUNIA_EXCEPTIONS} )
 
-source_group( "include"      FILES ${INCLUDE_JUNIA}      )
-source_group( "include/Core" FILES ${INCLUDE_JUNIA_CORE} )
+source_group( "include"            FILES ${INCLUDE_JUNIA}            )
+source_group( "include/Core"       FILES ${INCLUDE_JUNIA_CORE}       )
+source_group( "include/Exceptions" FILES ${INCLUDE_JUNIA_EXCEPTIONS} )
