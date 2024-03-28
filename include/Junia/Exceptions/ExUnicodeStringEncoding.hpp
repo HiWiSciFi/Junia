@@ -29,6 +29,12 @@ public:
 	 */
 	ExUnicodeStringEncoding(const utf8_string& msg, std::exception_ptr previous, CodePos location, const u_string& str, std::size_t index) noexcept;
 
+	/**
+	 * @brief   get the string that caused the exception
+	 * @returns the string that caused the exception
+	 */
+	const u_string& GetString() const noexcept;
+
 protected:
 	u_string str;
 };

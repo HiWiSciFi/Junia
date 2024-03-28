@@ -15,4 +15,8 @@ namespace Junia {
 ExUtf8StringEncoding::ExUtf8StringEncoding(const utf8_string& msg, std::exception_ptr previous, CodePos location, const utf8_string& str, std::size_t index) noexcept
 	: ExStringEncoding(msg, previous, location, index), str(str) { }
 
+const utf8_string& ExUtf8StringEncoding::GetString() const noexcept {
+	return this->str;
+}
+
 } // namespace Junia

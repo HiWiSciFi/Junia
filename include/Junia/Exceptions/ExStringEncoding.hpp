@@ -27,6 +27,12 @@ public:
 	 */
 	ExStringEncoding(const utf8_string& msg, std::exception_ptr previous = nullptr, CodePos location = CodePos::NotProvided(), std::size_t index = 0) noexcept;
 
+	/**
+	 * @brief   get the index of the character that caused the exception
+	 * @returns the index of the character that caused the exception
+	 */
+	std::size_t GetIndex() const noexcept;
+
 protected:
 	std::size_t index;
 };
