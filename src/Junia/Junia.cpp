@@ -11,12 +11,14 @@
 
 #include <Junia/Junia.hpp>
 
+#include <Junia/Core/FileSystem.hpp>
+
 #include <iostream>
 
 namespace Junia {
 
 void Init() {
-	std::cout << "Hello World!" << std::endl;
+	FileSystem::Init();
 }
 
 void Terminate() {
