@@ -13,8 +13,6 @@
 
 #include "Core.hpp"
 
-#include "Strings.hpp"
-
 #include <stdexcept>
 
 namespace Junia {
@@ -80,7 +78,7 @@ public:
 	 * @param location the code position this exception was thrown in (see
 	 *                 JUNIA_CODEPOS)
 	 */
-	explicit Exception(const utf8_string& msg, std::exception_ptr previous = nullptr, CodePos location = CodePos::NotProvided()) noexcept;
+	explicit Exception(const std::u8string& msg, std::exception_ptr previous = nullptr, CodePos location = CodePos::NotProvided()) noexcept;
 
 	/**
 	 * @brief   do not use. Use GetMessage() instead.
@@ -99,7 +97,7 @@ public:
 	 * @brief   get the message text of the exception
 	 * @returns a reference to the message string
 	 */
-	[[nodiscard]] virtual const utf8_string& GetMessage() const noexcept;
+	[[nodiscard]] virtual const std::u8string& GetMessage() const noexcept;
 
 	/**
 	 * @brief   get the code position of the exception occurrance
@@ -134,10 +132,10 @@ public:
 	 * @returns           a string with the message text and previous message
 	 *                    texts
 	 */
-	[[nodiscard]] utf8_string GetText(bool recursive) const;
+	[[nodiscard]] std::u8string GetText(bool recursive) const;
 
 protected:
-	utf8_string        message;
+	std::u8string      message;
 	CodePos            location;
 	std::exception_ptr previous;
 };

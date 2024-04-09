@@ -13,6 +13,7 @@
 #define __HEADER_JUNIA_JUNIA
 
 #include "Core/Core.hpp"
+#include "Core/Strings.hpp"
 
 namespace Junia {
 
