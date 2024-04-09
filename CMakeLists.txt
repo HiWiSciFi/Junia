@@ -70,7 +70,7 @@ set(SRC_JUNIA_CORE
 	"${JUNIA_SOURCE_DIR}/Junia/Core/Exception.cpp"
 	"${JUNIA_SOURCE_DIR}/Junia/Core/FileSystem.cpp"
 	"${JUNIA_SOURCE_DIR}/Junia/Core/StringConvert.cpp"
-	"${JUNIA_SOURCE_DIR}/Junia/Core/System.cpp"
+	"${JUNIA_SOURCE_DIR}/Junia/Core/Strings.cpp"
 )
 
 set(SRC_JUNIA_EXCEPTIONS

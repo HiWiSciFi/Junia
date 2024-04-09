@@ -15,14 +15,20 @@
 
 #include <iostream>
 
+#define WIN32_LEAN_AND_MEAN
+#include <Windows.h>
+#undef WIN32_LEAN_AND_MEAN
+
 namespace Junia {
 
 void Init() {
+	SetConsoleOutputCP(CP_UTF8);
 	FileSystem::Init();
+	std::cout << u8"Hello World!" << std::endl;
 }
 
 void Terminate() {
-	std::cout << "Bye World!" << std::endl;
+	std::cout << u8"Bye World!" << std::endl;
 }
 
 } // namespace Junia
