@@ -27,16 +27,16 @@ public:
 	 * @param str      the string that caused the exception
 	 * @param index    the index of the character that caused the exception
 	 */
-	ExUnicodeStringEncoding(const utf8_string& msg, std::exception_ptr previous, CodePos location, const u_string& str, std::size_t index) noexcept;
+	ExUnicodeStringEncoding(const std::u8string& msg, std::exception_ptr previous, CodePos location, const std::u32string& str, std::size_t index) noexcept;
 
 	/**
 	 * @brief   get the string that caused the exception
 	 * @returns the string that caused the exception
 	 */
-	const u_string& GetString() const noexcept;
+	const std::u32string& GetString() const noexcept;
 
 protected:
-	u_string str;
+	std::u32string str;
 };
 
 } // namespace Junia
