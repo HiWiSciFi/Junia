@@ -16,12 +16,16 @@
 
 namespace Junia {
 
-class JUNIA_SYMBOL FileSystem {
+class JUNIA_SYMBOL FileSystem final {
 public:
 	static void Init();
 
 private:
 	static utf8_string executablePath;
+
+	FileSystem()                  = delete;
+	FileSystem(const FileSystem&) = delete;
+	~FileSystem()                 = delete;
 };
 
 } // namespace Junia

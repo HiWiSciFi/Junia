@@ -25,11 +25,16 @@ namespace Junia {
 utf8_string FileSystem::executablePath;
 
 void FileSystem::Init() {
-	// executablePath = ;
-	WCHAR filename[MAX_PATH];
-	GetModuleFileNameW(NULL, filename, MAX_PATH);
+	WCHAR shortPath[MAX_PATH];
+	WCHAR longPath[MAX_PATH];
 
-	executablePath = StringConvert::UTF16ToUTF8(utf16_string(filename));
+	if (GetModuleFileNameW(NULL, shortPath, MAX_PATH) == 0 || GetLastError() == ERROR_INSUFFICIENT_BUFFER) {
+		return;
+	}
+
+	GetLongPathNameW(shortPath, longPath, MAX_PATH);
+
+	executablePath = StringConvert::UTF16ToUTF8(utf16_string(longPath));
 }
 
 } // namespace Junia
