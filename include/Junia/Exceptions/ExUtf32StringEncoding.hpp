@@ -1,7 +1,7 @@
 /*******************************************************************************
  *
- * @file      ExUnicodeStringEncoding.hpp
- * @brief     Contains the ExUnicodeStringEncoding exception class
+ * @file      ExUtf32StringEncoding.hpp
+ * @brief     Contains the ExUtf32StringEncoding exception class
  *            implementation
  * @author    Max Hager
  * @date      27.03.2024
@@ -9,14 +9,14 @@
  *
  ******************************************************************************/
 
-#ifndef __HEADER_JUNIA_EXCEPTIONS_EXUNICODESTRINGENCODING
-#define __HEADER_JUNIA_EXCEPTIONS_EXUNICODESTRINGENCODING
+#ifndef __HEADER_JUNIA_EXCEPTIONS_EXUTF32STRINGENCODING
+#define __HEADER_JUNIA_EXCEPTIONS_EXUTF32STRINGENCODING
 
 #include "ExStringEncoding.hpp"
 
 namespace Junia {
 
-class JUNIA_SYMBOL ExUnicodeStringEncoding : public ExStringEncoding {
+class JUNIA_SYMBOL ExUtf32StringEncoding : public ExStringEncoding {
 public:
 	/**
 	 * @brief ExUnicodeStringEncoding object constructor
@@ -27,18 +27,18 @@ public:
 	 * @param str      the string that caused the exception
 	 * @param index    the index of the character that caused the exception
 	 */
-	ExUnicodeStringEncoding(const std::u8string& msg, std::exception_ptr previous, CodePos location, const std::u32string& str, std::size_t index) noexcept;
+	ExUtf32StringEncoding(const utf8_string& msg, std::exception_ptr previous, CodePos location, const utf32_string& str, std::size_t index) noexcept;
 
 	/**
 	 * @brief   get the string that caused the exception
 	 * @returns the string that caused the exception
 	 */
-	const std::u32string& GetString() const noexcept;
+	const utf32_string& GetString() const noexcept;
 
 protected:
-	std::u32string str;
+	utf32_string str;
 };
 
 } // namespace Junia
 
-#endif // !defined(__HEADER_JUNIA_EXCEPTIONS_EXUNICODESTRINGENCODING)
+#endif // !defined(__HEADER_JUNIA_EXCEPTIONS_EXUTF32STRINGENCODING)
