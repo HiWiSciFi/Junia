@@ -25,7 +25,7 @@ public:
 	 *                 JUNIA_CODEPOS)
 	 * @param index    the index of the character that caused the exception
 	 */
-	ExStringEncoding(const std::u8string& msg, std::exception_ptr previous = nullptr, CodePos location = CodePos::NotProvided(), std::size_t index = 0) noexcept;
+	ExStringEncoding(const utf8_string& msg, std::exception_ptr previous = nullptr, CodePos location = CodePos::NotProvided(), std::size_t index = 0) noexcept;
 
 	/**
 	 * @brief   get the index of the character that caused the exception

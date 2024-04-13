@@ -13,8 +13,8 @@
 
 #include "Core.hpp"
 
-#include "../Exceptions/ExUnicodeStringEncoding.hpp"
 #include "../Exceptions/ExUtf16StringEncoding.hpp"
+#include "../Exceptions/ExUtf32StringEncoding.hpp"
 #include "../Exceptions/ExUtf8StringEncoding.hpp"
 #include "Strings.hpp"
 
@@ -34,10 +34,10 @@ public:
 	 * @returns      a UTF-16 encoded string
 	 *
 	 * @throws ExUtf8StringEncoding    if the UTF-8 string was invalid
-	 * @throws ExUnicodeStringEncoding if the generated Unicode codepoint string
+	 * @throws ExUtf32StringEncoding   if the generated Unicode codepoint string
 	 *                                 was invalid
 	 */
-	[[nodiscard]] static std::u16string U8ToU16(const std::u8string& utf8);
+	[[nodiscard]] static utf16_string U8ToU16(const utf8_string& utf8);
 
 	/**
 	 * @brief        decode a UTF-8 string to a string of unicode codepoints
@@ -46,7 +46,7 @@ public:
 	 *
 	 * @throws ExUtf8StringEncoding if the UTF-8 string was invalid
 	 */
-	[[nodiscard]] static std::u32string U8ToU32(const std::u8string& utf8);
+	[[nodiscard]] static utf32_string U8ToU32(const utf8_string& utf8);
 
 	/**
 	 * @brief         convert a UTF-16 encoded string to a UTF-8 encoded string
@@ -54,10 +54,10 @@ public:
 	 * @returns       a UTF-8 encoded string
 	 *
 	 * @throws ExUtf16StringEncoding   if the UTF-16 string was invalid
-	 * @throws ExUnicodeStringEncoding if the gererated Unicode codepoint string
+	 * @throws ExUtf32StringEncoding   if the gererated Unicode codepoint string
 	 *                                 was invalid
 	 */
-	[[nodiscard]] static std::u8string U16ToU8(const std::u16string& utf16);
+	[[nodiscard]] static utf8_string U16ToU8(const utf16_string& utf16);
 
 	/**
 	 * @brief         decode a UTF-16 string to a string of unicode codepoints
@@ -66,25 +66,25 @@ public:
 	 *
 	 * @throws ExUtf16StringEncoding if the UTF-16 string was invalid
 	 */
-	[[nodiscard]] static std::u32string U16ToU32(const std::u16string& utf16);
+	[[nodiscard]] static utf32_string U16ToU32(const utf16_string& utf16);
 
 	/**
 	 * @brief           encode a string of unicode codepoints in UTF-8
 	 * @param   unicode the string of unicode codepoints to encode
 	 * @returns         a UTF-8 encoded string
 	 *
-	 * @throws ExUnicodeStringEncoding if a unicode codepoint was invalid
+	 * @throws ExUtf32StringEncoding if a unicode codepoint was invalid
 	 */
-	[[nodiscard]] static std::u8string U32ToU8(const std::u32string& unicode);
+	[[nodiscard]] static utf8_string U32ToU8(const utf32_string& unicode);
 
 	/**
 	 * @brief           encode a string of unicode codepoints in UTF-16
 	 * @param   unicode the string of unicode codepoints to encode
 	 * @returns         a UTF-16 encoded string
 	 *
-	 * @throws ExUnicodeStringEncoding if a unicode codepoint was invalid
+	 * @throws ExUtf32StringEncoding if a unicode codepoint was invalid
 	 */
-	[[nodiscard]] static std::u16string U32ToU16(const std::u32string& unicode);
+	[[nodiscard]] static utf16_string U32ToU16(const utf32_string& unicode);
 
 private:
 	StringConvert()                     = delete;
