@@ -12,12 +12,18 @@
 
 namespace std {
 
-JUNIA_SYMBOL ostream& operator<<(ostream& os, const u8string& val) {
-	os.write(reinterpret_cast<const char*>(val.data()), val.size());
+JUNIA_SYMBOL ostream& operator<<(ostream& os, const Junia::utf8_string& val) {
+	if constexpr (sizeof(char) == sizeof(Junia::utf8_string::value_type)) {
+		os.write(reinterpret_cast<const char*>(val.data()), val.size());
+	} else {
+		for (std::size_t i = 0; i < val.size(); i++) {
+			os.put(static_cast<char>(val[i]));
+		}
+	}
 	return os;
 }
 
-JUNIA_SYMBOL ostream& operator<<(ostream& os, const char8_t* val) {
+JUNIA_SYMBOL ostream& operator<<(ostream& os, const Junia::utf8_string::value_type* val) {
 	os.write(reinterpret_cast<const char*>(val), strlen(reinterpret_cast<const char*>(val)));
 	return os;
 }

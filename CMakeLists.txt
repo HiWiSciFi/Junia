@@ -74,9 +74,9 @@ set(SRC_JUNIA_CORE
 
 set(SRC_JUNIA_EXCEPTIONS
 	"${JUNIA_SOURCE_DIR}/Junia/Exceptions/ExStringEncoding.cpp"
-	"${JUNIA_SOURCE_DIR}/Junia/Exceptions/ExUnicodeStringEncoding.cpp"
 	"${JUNIA_SOURCE_DIR}/Junia/Exceptions/ExUtf8StringEncoding.cpp"
 	"${JUNIA_SOURCE_DIR}/Junia/Exceptions/ExUtf16StringEncoding.cpp"
+	"${JUNIA_SOURCE_DIR}/Junia/Exceptions/ExUtf32StringEncoding.cpp"
 )
 
 set(INCLUDE_JUNIA
@@ -92,9 +92,9 @@ set(INCLUDE_JUNIA_CORE
 
 set(INCLUDE_JUNIA_EXCEPTIONS
 	"${JUNIA_INCLUDE_DIR}/Junia/Exceptions/ExStringEncoding.hpp"
-	"${JUNIA_INCLUDE_DIR}/Junia/Exceptions/ExUnicodeStringEncoding.hpp"
 	"${JUNIA_INCLUDE_DIR}/Junia/Exceptions/ExUtf16StringEncoding.hpp"
 	"${JUNIA_INCLUDE_DIR}/Junia/Exceptions/ExUtf8StringEncoding.hpp"
+	"${JUNIA_INCLUDE_DIR}/Junia/Exceptions/ExUtf32StringEncoding.hpp"
 )
 
 target_sources(Junia PRIVATE
