@@ -11,6 +11,7 @@
 #include <Junia/Core/FileSystem.hpp>
 
 #include <Junia/Core/StringConvert.hpp>
+#include <Junia/Exceptions/ExWin32.hpp>
 
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
@@ -18,7 +19,10 @@
 #undef ERROR
 #undef IGNORE
 
+#include <filesystem>
 #include <iostream>
+
+static constexpr const char* CURRENT_FILE_NAME = "Junia/src/Junia/Core/FileSystem.cpp";
 
 namespace Junia {
 
@@ -28,13 +32,17 @@ void FileSystem::Init() {
 	WCHAR shortPath[MAX_PATH];
 	WCHAR longPath[MAX_PATH];
 
+	SetLastError(ERROR_SUCCESS);
 	if (GetModuleFileNameW(NULL, shortPath, MAX_PATH) == 0 || GetLastError() == ERROR_INSUFFICIENT_BUFFER) {
+		// throw ExFilepath(u8"", Exception::GetAsPtr<ExWin32>(GetLastError(), nullptr, CodePos(CURRENT_FILE_NAME, __FUNCTION__, __LINE__)), CodePos(CURRENT_FILE_NAME, __FUNCTION__, __LINE__));
 		return;
 	}
 
 	GetLongPathNameW(shortPath, longPath, MAX_PATH);
+	std::filesystem::path path = std::filesystem::path(longPath);
+	path.remove_filename();
 
-	executablePath = StringConvert::UTF16ToUTF8(utf16_string(longPath));
+	executablePath = path.generic_u8string();
 }
 
 } // namespace Junia
