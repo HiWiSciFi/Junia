@@ -10,8 +10,6 @@
 
 #include <Junia/Core/Exceptions/ExWin32.hpp>
 
-#include <Junia/Core/StringConvert.hpp>
-
 #define _WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 #undef _WIN32_LEAN_AND_MEAN

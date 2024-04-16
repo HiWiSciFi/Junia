@@ -69,7 +69,6 @@ set(SRC_JUNIA
 set(SRC_JUNIA_CORE
 	"${JUNIA_SOURCE_DIR}/Junia/Core/Exception.cpp"
 	"${JUNIA_SOURCE_DIR}/Junia/Core/FileSystem.cpp"
-	"${JUNIA_SOURCE_DIR}/Junia/Core/StringConvert.cpp"
 	"${JUNIA_SOURCE_DIR}/Junia/Core/Strings.cpp"
 )
 
@@ -90,7 +89,6 @@ set(INCLUDE_JUNIA_CORE
 	"${JUNIA_INCLUDE_DIR}/Junia/Core/Core.hpp"
 	"${JUNIA_INCLUDE_DIR}/Junia/Core/Exception.hpp"
 	"${JUNIA_INCLUDE_DIR}/Junia/Core/FileSystem.hpp"
-	"${JUNIA_INCLUDE_DIR}/Junia/Core/StringConvert.hpp"
 	"${JUNIA_INCLUDE_DIR}/Junia/Core/Strings.hpp"
 	"${JUNIA_INCLUDE_DIR}/Junia/Core/System.hpp"
 )
