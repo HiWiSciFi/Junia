@@ -10,9 +10,9 @@
 
 #include <Junia/Core/FileSystem.hpp>
 
+#include <Junia/Core/Exceptions/ExExepath.hpp>
+#include <Junia/Core/Exceptions/ExWin32.hpp>
 #include <Junia/Core/StringConvert.hpp>
-#include <Junia/Exceptions/ExExepath.hpp>
-#include <Junia/Exceptions/ExWin32.hpp>
 
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>

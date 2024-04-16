@@ -8,7 +8,7 @@
  *
  ******************************************************************************/
 
-#include <Junia/Exceptions/ExExepath.hpp>
+#include <Junia/Core/Exceptions/ExExepath.hpp>
 
 namespace Junia {
 

@@ -8,12 +8,10 @@
  *
  ******************************************************************************/
 
-#ifndef __HEADER_JUNIA_EXCEPTIONS_EXWIN32
-#define __HEADER_JUNIA_EXCEPTIONS_EXWIN32
+#ifndef __HEADER_JUNIA_CORE_EXCEPTIONS_EXWIN32
+#define __HEADER_JUNIA_CORE_EXCEPTIONS_EXWIN32
 
-#include "../Core/Core.hpp"
-
-#include "../Core/Exception.hpp"
+#include "../Exception.hpp"
 
 namespace Junia {
 
@@ -36,4 +34,4 @@ protected:
 
 } // namespace Junia
 
-#endif // !defined(__HEADER_JUNIA_EXCEPTIONS_EXWIN32)
+#endif // !defined(__HEADER_JUNIA_CORE_EXCEPTIONS_EXWIN32)

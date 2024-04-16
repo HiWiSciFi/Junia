@@ -8,8 +8,8 @@
  *
  ******************************************************************************/
 
-#ifndef __HEADER_JUNIA_EXCEPTIONS_EXUTF8STRINGENCODING
-#define __HEADER_JUNIA_EXCEPTIONS_EXUTF8STRINGENCODING
+#ifndef __HEADER_JUNIA_CORE_EXCEPTIONS_EXUTF8STRINGENCODING
+#define __HEADER_JUNIA_CORE_EXCEPTIONS_EXUTF8STRINGENCODING
 
 #include "ExStringEncoding.hpp"
 
@@ -40,4 +40,4 @@ protected:
 
 } // namespace Junia
 
-#endif // !defined(__HEADER_JUNIA_EXCEPTIONS_EXUTF8STRINGENCODING)
+#endif // !defined(__HEADER_JUNIA_CORE_EXCEPTIONS_EXUTF8STRINGENCODING)

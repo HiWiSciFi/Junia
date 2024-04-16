@@ -8,7 +8,7 @@
  *
  ******************************************************************************/
 
-#include <Junia/Exceptions/ExWin32.hpp>
+#include <Junia/Core/Exceptions/ExWin32.hpp>
 
 #include <Junia/Core/StringConvert.hpp>
 

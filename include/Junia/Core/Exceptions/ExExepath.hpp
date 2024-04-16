@@ -8,10 +8,10 @@
  *
  ******************************************************************************/
 
-#ifndef __HEADER_JUNIA_EXCEPTIONS_EXEXEPATH
-#define __HEADER_JUNIA_EXCEPTIONS_EXEXEPATH
+#ifndef __HEADER_JUNIA_CORE_EXCEPTIONS_EXEXEPATH
+#define __HEADER_JUNIA_CORE_EXCEPTIONS_EXEXEPATH
 
-#include "../Core/Exception.hpp"
+#include "../Exception.hpp"
 
 namespace Junia {
 
@@ -29,4 +29,4 @@ public:
 
 } // namespace Junia
 
-#endif // !defined(__HEADER_JUNIA_EXCEPTIONS_EXEXEPATH)
+#endif // !defined(__HEADER_JUNIA_CORE_EXCEPTIONS_EXEXEPATH)

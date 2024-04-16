@@ -8,10 +8,10 @@
  *
  ******************************************************************************/
 
-#ifndef __HEADER_JUNIA_EXCEPTIONS_EXSTRINGENCODING
-#define __HEADER_JUNIA_EXCEPTIONS_EXSTRINGENCODING
+#ifndef __HEADER_JUNIA_CORE_EXCEPTIONS_EXSTRINGENCODING
+#define __HEADER_JUNIA_CORE_EXCEPTIONS_EXSTRINGENCODING
 
-#include "../Core/Exception.hpp"
+#include "../Exception.hpp"
 
 namespace Junia {
 
@@ -39,4 +39,4 @@ protected:
 
 } // namespace Junia
 
-#endif // !defined(__HEADER_JUNIA_EXCEPTIONS_EXSTRINGENCODING)
+#endif // !defined(__HEADER_JUNIA_CORE_EXCEPTIONS_EXSTRINGENCODING)
