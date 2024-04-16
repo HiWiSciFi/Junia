@@ -11,6 +11,7 @@
 #include <Junia/Core/FileSystem.hpp>
 
 #include <Junia/Core/StringConvert.hpp>
+#include <Junia/Exceptions/ExExepath.hpp>
 #include <Junia/Exceptions/ExWin32.hpp>
 
 #define WIN32_LEAN_AND_MEAN
@@ -34,7 +35,7 @@ void FileSystem::Init() {
 
 	SetLastError(ERROR_SUCCESS);
 	if (GetModuleFileNameW(NULL, shortPath, MAX_PATH) == 0 || GetLastError() == ERROR_INSUFFICIENT_BUFFER) {
-		// throw ExFilepath(u8"", Exception::GetAsPtr<ExWin32>(GetLastError(), nullptr, CodePos(CURRENT_FILE_NAME, __FUNCTION__, __LINE__)), CodePos(CURRENT_FILE_NAME, __FUNCTION__, __LINE__));
+		throw ExExepath(u8"", Exception::GetAsPtr<ExWin32>(GetLastError(), nullptr, CodePos(CURRENT_FILE_NAME, __FUNCTION__, __LINE__)), CodePos(CURRENT_FILE_NAME, __FUNCTION__, __LINE__));
 		return;
 	}
 
