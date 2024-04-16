@@ -8,7 +8,7 @@
  *
  ******************************************************************************/
 
-#include <Junia/Exceptions/ExStringEncoding.hpp>
+#include <Junia/Core/Exceptions/ExStringEncoding.hpp>
 
 namespace Junia {
 

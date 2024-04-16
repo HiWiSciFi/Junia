@@ -13,9 +13,9 @@
 
 #include "Core.hpp"
 
-#include "../Exceptions/ExUtf16StringEncoding.hpp"
-#include "../Exceptions/ExUtf32StringEncoding.hpp"
-#include "../Exceptions/ExUtf8StringEncoding.hpp"
+#include "Exceptions/ExUtf16StringEncoding.hpp"
+#include "Exceptions/ExUtf32StringEncoding.hpp"
+#include "Exceptions/ExUtf8StringEncoding.hpp"
 #include "Strings.hpp"
 
 namespace Junia {
