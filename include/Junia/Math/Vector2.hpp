@@ -1,0 +1,210 @@
+/*******************************************************************************
+ *
+ * @file      Vector2.hpp
+ * @brief     Contains the Vector2 class definition
+ * @author    Max Hager
+ * @date      2024-07-21
+ * @copyright © Max Hager, 2024. All right reserved.
+ *
+ ******************************************************************************/
+
+#ifndef __HEADER_JUNIA_MATH_VECTOR2
+#define __HEADER_JUNIA_MATH_VECTOR2
+
+#include "Types.hpp"
+
+namespace Junia {
+
+using Vec2   = Vector<2, float>;
+using Vec2f  = Vector<2, float>;
+using Vec2d  = Vector<2, double>;
+using Vec2i  = Vector<2, std::int32_t>;
+using Vec2ui = Vector<2, std::uint32_t>;
+
+#ifdef _MSC_VER
+#pragma pack(push, 1)
+#endif
+
+template <typename T>
+struct Vector<2, T> {
+public:
+	union {
+		T x, r;
+	};
+	union {
+		T y, g;
+	};
+
+	inline Vector();
+	inline Vector(T x, T y);
+
+	template <typename U>
+	inline explicit Vector<2, T>(const Vector<2, U>& other);
+
+	inline T&       operator[](int index);
+	inline const T& operator[](int index) const;
+
+	inline Vector<2, T>& operator*=(T scalar);
+	inline Vector<2, T>& operator/=(T scalar);
+	inline Vector<2, T>& operator+=(const Vector<2, T>& other);
+	inline Vector<2, T>& operator-=(const Vector<2, T>& other);
+}
+#if defined(__GNUC__) || defined(__clang__)
+__attribute__((__packed__))
+#endif
+;
+
+#ifdef _MSC_VER
+#pragma pack(pop)
+#endif
+
+template <typename T>
+inline Vector<2, T> operator*(const Vector<2, T>& vector, T scalar);
+
+template <typename T>
+inline Vector<2, T> operator/(const Vector<2, T>& vector, T scalar);
+
+template <typename T>
+inline Vector<2, T> operator-(const Vector<2, T>& vector);
+
+template <typename T>
+inline Vector<2, T> operator+(const Vector<2, T>& first, const Vector<2, T>& second);
+
+template <typename T>
+inline Vector<2, T> operator-(const Vector<2, T>& first, const Vector<2, T>& second);
+
+template <typename T>
+inline float Magnitude(const Vector<2, T>& vector);
+
+template <typename T>
+inline Vector<2, T> Normalize(const Vector<2, T>& vector);
+
+template <typename T>
+inline T Dot(const Vector<2, T>& first, const Vector<2, T>& second);
+
+template <typename T>
+inline Vector<2, T> Project(const Vector<2, T>& first, const Vector<2, T>& second);
+
+template <typename T>
+inline Vector<2, T> Reject(const Vector<2, T>& first, const Vector<2, T>& second);
+
+template <typename T>
+inline Vector<2, T>::Vector() = default;
+
+template <typename T>
+inline Vector<2, T>::Vector(T x, T y)
+	: x(x), y(y) { }
+
+template <typename T>
+template <typename U>
+inline Vector<2, T>::Vector(const Vector<2, U>& other)
+	: x(static_cast<T>(other.x)),
+	  y(static_cast<T>(other.y)) { }
+
+template <typename T>
+inline T& Vector<2, T>::operator[](int index) {
+	return ((&x)[index]);
+}
+
+template <typename T>
+inline const T& Vector<2, T>::operator[](int index) const {
+	return ((&x)[index]);
+}
+
+template <typename T>
+inline Vector<2, T>& Vector<2, T>::operator*=(T scalar) {
+	x *= scalar;
+	y *= scalar;
+	return *this;
+}
+
+template <typename T>
+inline Vector<2, T>& Vector<2, T>::operator/=(T scalar) {
+	scalar = 1.0f / scalar;
+	x *= scalar;
+	y *= scalar;
+	return *this;
+}
+
+template <typename T>
+inline Vector<2, T>& Vector<2, T>::operator+=(const Vector<2, T>& other) {
+	x += other.x;
+	y += other.y;
+	return *this;
+}
+
+template <typename T>
+inline Vector<2, T>& Vector<2, T>::operator-=(const Vector<2, T>& other) {
+	x -= other.x;
+	y -= other.y;
+	return *this;
+}
+
+template <typename T>
+inline Vector<2, T> operator*(const Vector<2, T>& vector, T scalar) {
+	return Vector<2, T>(
+		vector.x * scalar,
+		vector.y * scalar);
+}
+
+template <typename T>
+inline Vector<2, T> operator/(const Vector<2, T>& vector, T scalar) {
+	scalar = 1.0f / scalar;
+	return Vector<2, T>(
+		vector.x * scalar,
+		vector.y * scalar);
+}
+
+template <typename T>
+inline Vector<2, T> operator-(const Vector<2, T>& vector) {
+	return Vector<2, T>(-vector.x, -vector.y);
+}
+
+template <typename T>
+inline Vector<2, T> operator+(const Vector<2, T>& first,
+							  const Vector<2, T>& second) {
+	return Vector<2, T>(
+		first.x + second.x,
+		first.y + second.y);
+}
+
+template <typename T>
+inline Vector<2, T> operator-(const Vector<2, T>& first,
+							  const Vector<2, T>& second) {
+	return Vector<2, T>(
+		first.x - second.x,
+		first.y - second.y);
+}
+
+template <typename T>
+inline float Magnitude(const Vector<2, T>& vector) {
+	return std::sqrt(
+		(vector.x * vector.x) +
+		(vector.y * vector.y));
+}
+
+template <typename T>
+inline Vector<2, T> Normalize(const Vector<2, T>& vector) {
+	return vector / Magnitude(vector);
+}
+
+template <typename T>
+inline T Dot(const Vector<2, T>& first, const Vector<2, T>& second) {
+	return (first.x * second.x) + (first.y * second.y);
+}
+
+template <typename T>
+inline Vector<2, T> Project(const Vector<2, T>& first,
+							const Vector<2, T>& second) {
+	return second * (Dot(first, second) / Dot(second, second));
+}
+
+template <typename T>
+inline Vector<2, T> Reject(const Vector<2, T>& first,
+						   const Vector<2, T>& second) {
+	return first - (second * (Dot(first, second) / Dot(second, second)));
+}
+
+} // namespace Junia
+
+#endif // !defined(__HEADER_JUNIA_MATH_VECTOR2)

@@ -3,7 +3,7 @@
  * @file      Strings.hpp
  * @brief     Contains the specification for UTF8-String string handling
  * @author    Max Hager
- * @date      22.03.2024
+ * @date      2024-03-22
  * @copyright © Max Hager, 2024. All right reserved.
  *
  ******************************************************************************/
@@ -30,6 +30,17 @@ using utf16_string = std::u16string;
 
 /// @brief A Unicode codepoint string
 using utf32_string = std::u32string;
+
+class JUNIA_SYMBOL StringUtil final {
+public:
+	[[nodiscard]] static std::size_t GetCodepointCount(const utf8_string& str);
+	[[nodiscard]] static std::size_t GetCodepointCount(const utf16_string& str);
+	[[nodiscard]] static std::size_t GetCodepointCount(const utf32_string& str);
+
+private:
+	StringUtil()  = delete;
+	~StringUtil() = delete;
+};
 
 } // namespace Junia
 

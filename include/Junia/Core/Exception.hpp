@@ -12,8 +12,7 @@
 #define __HEADER_JUNIA_CORE_EXCEPTION
 
 #include "Core.hpp"
-
-#include <Junia/Core/Strings.hpp>
+#include "Strings.hpp"
 
 #include <stdexcept>
 

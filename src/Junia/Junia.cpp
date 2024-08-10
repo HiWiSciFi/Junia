@@ -11,6 +11,10 @@
 
 #include <Junia/Junia.hpp>
 
+#include <Junia/Rendering/Monitor.hpp>
+#include "Rendering/OpenGL/JGL_Instance.hpp"
+#include "Rendering/Vulkan/JVK_Instance.hpp"
+
 #include <iostream>
 
 #define WIN32_LEAN_AND_MEAN
@@ -22,6 +26,10 @@ namespace Junia {
 void Init() {
 	SetConsoleOutputCP(CP_UTF8);
 	std::cout << u8"Hello World!" << std::endl;
+
+	JGL::JGL_Instance glInstance = JGL::JGL_Instance();
+	JVK::JVK_Instance vkInstance = JVK::JVK_Instance();
+	Monitor::Init();
 }
 
 void Terminate() {

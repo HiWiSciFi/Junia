@@ -3,12 +3,69 @@
  * @file      Strings.cpp
  * @brief     Contains the specification for UTF8-String string handling
  * @author    Max Hager
- * @date      9.04.2024
+ * @date      2024-04-09
  * @copyright © Max Hager, 2024. All right reserved.
  *
  ******************************************************************************/
 
 #include <Junia/Core/Strings.hpp>
+
+#include <Junia/Core/Exception.hpp>
+
+static constexpr const char* CURRENT_FILE_NAME = "Junia/src/Junia/Core/Strings.cpp";
+
+namespace Junia {
+
+std::size_t StringUtil::GetCodepointCount(const utf8_string& str) {
+	std::size_t                    length  = 0;
+	std::size_t                    cLength = str.size();
+	const utf8_string::value_type* cstr    = str.c_str();
+	std::size_t                    i       = 0;
+
+	while (i < cLength) {
+		if ((cstr[i] & 0b1000'0000u) == 0b0000'0000u)
+			i++;
+		else if (
+			(cstr[i] & 0b1110'0000u) == 0b1100'0000u)
+			i += 2;
+		else if ((cstr[i] & 0b1111'0000u) == 0b1110'0000u)
+			i += 3;
+		else if ((cstr[i] & 0b1111'1000u) == 0b1111'0000u)
+			i += 4;
+		else
+			throw Exception(u8"Invalid UTF8 string", nullptr, CodePos(CURRENT_FILE_NAME, __FUNCTION__, __LINE__));
+		length++;
+	}
+
+	if (i > cLength) throw Exception(u8"Invalid UTF8 string", nullptr, CodePos(CURRENT_FILE_NAME, __FUNCTION__, __LINE__));
+
+	return length;
+}
+
+std::size_t StringUtil::GetCodepointCount(const utf16_string& str) {
+	std::size_t                     length  = 0;
+	std::size_t                     cLength = str.size();
+	const utf16_string::value_type* cstr    = str.c_str();
+	std::size_t                     i       = 0;
+
+	while (i < cLength) {
+		if (cstr[i] >= u'\xD800' && cstr[i] <= u'\xDFFF')
+			i += 2;
+		else
+			i++;
+		length++;
+	}
+
+	if (i > cLength) throw Exception(u8"Invalid UTF16 string", nullptr, CodePos(CURRENT_FILE_NAME, __FUNCTION__, __LINE__));
+
+	return length;
+}
+
+std::size_t StringUtil::GetCodepointCount(const utf32_string& str) {
+	return str.size();
+}
+
+} // namespace Junia
 
 #include <Junia/Core/Exceptions/ExUtf16StringEncoding.hpp>
 #include <Junia/Core/Exceptions/ExUtf32StringEncoding.hpp>
@@ -22,9 +79,8 @@ JUNIA_SYMBOL ostream& operator<<(ostream& os, const Junia::utf8_string& val) {
 	if constexpr (sizeof(char) == sizeof(Junia::utf8_string::value_type)) {
 		os.write(reinterpret_cast<const char*>(val.data()), val.size());
 	} else {
-		for (std::size_t i = 0; i < val.size(); i++) {
+		for (std::size_t i = 0; i < val.size(); i++)
 			os.put(static_cast<char>(val[i]));
-		}
 	}
 	return os;
 }
