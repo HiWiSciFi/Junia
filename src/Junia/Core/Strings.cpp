@@ -71,8 +71,6 @@ std::size_t StringUtil::GetCodepointCount(const utf32_string& str) {
 #include <Junia/Core/Exceptions/ExUtf32StringEncoding.hpp>
 #include <Junia/Core/Exceptions/ExUtf8StringEncoding.hpp>
 
-static constexpr const char* CURRENT_FILE_NAME = "Junia/src/Junia/Core/Strings.cpp";
-
 namespace std {
 
 JUNIA_SYMBOL ostream& operator<<(ostream& os, const Junia::utf8_string& val) {

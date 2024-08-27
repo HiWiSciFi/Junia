@@ -10,7 +10,7 @@
 
 #include <Junia/Rendering/Monitor.hpp>
 
-#include <Junia/Core/StringConvert.hpp>
+#include <Junia/Core/Strings.hpp>
 #include <Junia/Exceptions/ExWindows.hpp>
 
 #include <iostream>

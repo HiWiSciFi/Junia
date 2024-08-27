@@ -15,7 +15,7 @@
 #undef WIN32_LEAN_AND_MEAN
 #undef GetMessage
 
-#include <Junia/Core/StringConvert.hpp>
+#include <Junia/Core/Strings.hpp>
 #include <Junia/Exceptions/ExWindows.hpp>
 
 static constexpr const char* CURRENT_FILE_NAME = "Junia/src/Junia/Rendering/Window.cpp";

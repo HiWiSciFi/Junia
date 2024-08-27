@@ -10,7 +10,7 @@
 
 #include <Junia/Exceptions/ExWindows.hpp>
 
-#include <Junia/Core/StringConvert.hpp>
+#include <Junia/Core/Strings.hpp>
 
 #define _WIN32_LEAN_AND_MEAN
 #include <Windows.h>
@@ -25,13 +25,13 @@ ExWindows::ExWindows(unsigned long code, std::exception_ptr previous, CodePos lo
 	: code(code), Exception(u8"", previous, location) {
 	LPWSTR buf;
 	DWORD  strLen = FormatMessageW(
-        FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM,
-        NULL,
-        code,
-        LANG_USER_DEFAULT,
-        reinterpret_cast<LPWSTR>(&buf),
-        1024,
-        NULL);
+		FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM,
+		NULL,
+		code,
+		LANG_USER_DEFAULT,
+		reinterpret_cast<LPWSTR>(&buf),
+		1024,
+		NULL);
 
 	if (strLen == 0) {
 		std::string codeStr = std::to_string(code);
